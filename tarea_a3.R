@@ -247,6 +247,50 @@ resultado_formalidad
 #con fact_cal. Para el resultado final se utilizarán los promedios
 #ponderados.
 
+#9 Interpretar los resultados
+
+#Los resultados muestran que sí existe una brecha en las horas semanales 
+#fectivamente trabajadas entre trabajadores formales e informales
+#Al utilizar el factor de expansión fact_cal, los trabajadores formales trabajan 
+#en promedio 38,8 horas semanales, mientras que los trabajadores informales
+#abajan 29,5 horas. La brecha es de 9,31 horas semanales,lo que significa que,
+#n promedio, los trabajadores formales trabajan 9,31 horas más que los trabajadores
+#informales.Para el análisis final se utilizaron los resultados ponderados, ya que 
+#consideran el factor de expansión de la encuesta.
 
 
+# 10. Guardar el resultado y dejar la bitácora
+
+dir.create("data/processed", showWarnings = FALSE)
+
+write.csv(
+  empleo_limpia,
+  "data/processed/ene_a3_formalidad.csv",
+  row.names = FALSE)
+
+file.exists("data/processed/ene_a3_formalidad.csv")
+
+#Se comprobó que la base limpia fue guardada correctamente en
+#data/processed, manteniendo intacta la base original.
+
+
+# Bitácora de limpieza
+# -----------------------------------------------------------------------------
+
+#1.Lectura: se utilizó read.csv2() porque la base utiliza punto y coma
+#como separador y coma para los decimales.
+
+#2.Variables conservadas: efectivas, ocup_form, activ y fact_cal.
+#se redujo la base original de 222 a 4 variables.
+#
+#3.Recodificación: se crearon las variables formalidad y situacion
+#mediante case_when().
+#4.Faltantes: se revisaron los valores NA de las variables utilizadas
+#y se identificaron los casos en que la información no corresponde.
+#5.Centinelas: se revisaron los valores 888 y 999 de efectivas y se
+#cambiaron por NA porque corresponden a "No sabe" y "No responde".
+#6. Ponderación: se utilizó fact_cal para calcular los promedios
+#ponderados de horas según formalidad.
+#7. Brecha: se calculó la diferencia entre el promedio de horas de los
+#trabajadores formales y el promedio de los trabajadores informales.
 
